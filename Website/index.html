@@ -24,20 +24,22 @@
 			  <table cellspacing="1" cellpadding="3" class="tablehead" style="background:#CCC;">
 			  <thead>  
 				<tr>
+				  <th>Status</th>
 				  <th>Tool Name</th>
 				  <th>Description</th>
 				  <th>Code</th>
+				  <th>Latest Run</th>
 				  <th>Latest Output</th>
-				  <th>Status</th>
 				</tr>
 			  </thead>
 			  <tbody>
 				<tr ng-repeat="x in names">
+				  <td><img width="30px" ng-src="{{x.status == 1 ? 'assets/img/icon-success.png' : 'assets/img/icon-failure.png' }}" title="{{x.status == 1 ? 'Tool successfully executed' : 'Tool failed to execute' }}" /></td>
 				  <td>{{x.toolname}}</td>
 				  <td>{{x.description}}</td>
 				  <td><a href="{{x.code}}">{{x.code}}</a></td>
+				  <td>{{x.lastdate}}</td>
 				  <td><a href="{{x.ftp}}">{{x.ftp}}</a></td>
-				  <td>{{x.status}}</td>
 				</tr>
 			  </tbody>
 			  </table>
