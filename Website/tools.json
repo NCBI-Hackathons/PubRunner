@@ -1,0 +1,4 @@
+[
+  { "toolname" : "Word CountsX", "description" : "This is the bestest tool.", "code" : "https://github.com/NCBI-Hackathons/svcompare", "ftp" : "ftp://ftp.ncbi.nlm.nih.gov/dbgap/", "status" : 1  } ,
+  { "toolname" : "Broken Word CountsX", "description" : "This is a less good tool.", "code" : "https://github.com/NCBI-Hackathons/svcompare", "ftp" : "ftp://ftp.ncbi.nlm.nih.gov/dbgap/", "status" : 0  }
+]

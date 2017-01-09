@@ -1,0 +1,81 @@
+<!DOCTYPE html>  
+<html lang="en">  
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PubRunner</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/tablecloth.css" rel="stylesheet">
+    <link href="assets/css/prettify.css" rel="stylesheet"> 
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="span12" style="padding:20px 0;">
+        
+          <p>
+            <h3>PubRunner</h3>
+            PubRunner is a wonderful software tool that does stuff.
+          </p>
+          
+          <div ng-app="pubrunnerApp" ng-controller="appControl">
+			  <table cellspacing="1" cellpadding="3" class="tablehead" style="background:#CCC;">
+			  <thead>  
+				<tr>
+				  <th>Tool Name</th>
+				  <th>Description</th>
+				  <th>Code</th>
+				  <th>Latest Output</th>
+				  <th>Status</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr ng-repeat="x in names">
+				  <td>{{x.toolname}}</td>
+				  <td>{{x.description}}</td>
+				  <td><a href="{{x.code}}">{{x.code}}</a></td>
+				  <td><a href="{{x.ftp}}">{{x.ftp}}</a></td>
+				  <td>{{x.status}}</td>
+				</tr>
+			  </tbody>
+			  </table>
+		  </div>
+          
+        </div>
+      </div>
+    </div>
+  
+    
+  </body>
+
+    <script src="assets/js/jquery-1.7.2.min.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/jquery.metadata.js"></script>
+    <script src="assets/js/jquery.tablesorter.min.js"></script>
+    <script src="assets/js/jquery.tablecloth.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+  
+    <script type="text/javascript" charset="utf-8">
+      var app = angular.module('pubrunnerApp', []);
+		app.controller('appControl', function($scope, $http) {
+			/*$scope.names = [
+			  { "toolname" : "Word Counts", "description" : "This is the bestest tool.", "code" : "https://github.com/NCBI-Hackathons/svcompare", "ftp" : "ftp://ftp.ncbi.nlm.nih.gov/dbgap/", status : 1  }
+			];*/
+			
+			$http.get('tools.json').success(function(data) {
+				$scope.names = data;
+			}); 
+		});
+	  
+	  $(document).ready(function() {
+        $("table").tablecloth({
+          theme: "paper",
+          striped: true,
+          sortable: false,
+          condensed: true
+        });
+      });
+    </script>
+</html>
