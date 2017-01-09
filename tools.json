@@ -1,0 +1,9 @@
+[
+  {
+    "name": "CountWords",
+    "command": "python",
+    "main": "CountWords.py",
+    "timeout": 60,
+    "active": true
+  }
+]
