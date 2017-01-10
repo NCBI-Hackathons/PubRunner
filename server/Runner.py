@@ -1,7 +1,6 @@
 from settings import *
 import os
 from subprocess import run, PIPE
-from threading import Timer
 import datetime
 
 class Runner:
@@ -14,7 +13,14 @@ class Runner:
         tries = 0
         while not self.successed and tries < 5:
             try:
-                process = run([self.command, "tools/"+self.name+"/"+self.main, "-i"+ROOT+DB, "-o"+ROOT+FTP+self.name+"/"], stdout=PIPE, stderr=PIPE, timeout=self.timeout, check=True)
+                process = run([self.command,
+                              "tools/"+self.name+"/"+self.version+"/"+self.main,
+                              "-i"+ROOT+DB,
+                              "-o"+ROOT+FTP+self.name+"/"+self.version+"/"],
+                              stdout=PIPE,
+                              stderr=PIPE,
+                              timeout=self.timeout,
+                              check=True)
                 self.successed = True
             except:
                 tries += 1

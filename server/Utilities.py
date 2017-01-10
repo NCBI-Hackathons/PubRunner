@@ -39,22 +39,36 @@ def addTool(params):
     TODO: support to move files in the newly created tool directory
     """
 
-    # Augment params
+    # First, augment attributes
     params["successed"] = None
     params["lastRun"] = None
-    params["active"] = None
+    params["active"] = True
 
-    # First, update the JSON file
+    # Check if a tool with the same name exists First
     tools = loadTools()
-    tools.append(params)
+    exists = False
+    for tool in tools:
+        if tool["name"] == params["name"]:
+            # Cancel if it's the same version
+            if tool["version"] == params["version"]:
+                return
+            # If it's not, update the version and reset a few parameters
+            exists = True
+            tool["version"] = params["version"]
+            tool["successed"] = params["successed"]
+            tool["lastRun"] = params["lastRun"]
+
+    # Update the JSON file
+    if not exists:
+        tools.append(params)
     updateTools(tools)
 
     # Create the FTP folder
-    ftpPath = FTP+params["name"]
+    ftpPath = FTP+params["name"]+"/"+params["version"]
     if not os.path.exists(ftpPath):
         os.makedirs(ftpPath)
 
     # Create the tool folder
-    toolPath = TOOLS+params["name"]
+    toolPath = TOOLS+params["name"]+"/"+params["version"]
     if not os.path.exists(toolPath):
         os.makedirs(toolPath)

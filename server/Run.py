@@ -4,7 +4,7 @@ from Runner import *
 # Load tool list
 tools = loadTools()
 
-# Now launch every tool
+# Now launch tools
 updatedTools = []
 for tool in tools:
     # Only launch those that are active
@@ -17,3 +17,5 @@ for tool in tools:
 
 # Update the tools.json file
 updateTools(updatedTools)
+
+# TODO: push the new JSON file to website

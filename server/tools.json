@@ -1,35 +1,38 @@
 [
     {
         "name": "CountWords",
+        "version": "0.1",
         "description": "CountWords tool description",
         "url": "http://www.foo.bar",
         "command": "python",
         "main": "CountWords.py",
         "timeout": 60,
         "successed": true,
-        "lastRun": "01-09-2017",
+        "lastRun": "01-10-2017",
         "active": true
     },
     {
         "name": "CountWordsError",
+        "version": "0.1",
         "description": "CountWordsError tool description",
         "url": "http://www.foo.bar",
         "command": "python",
         "main": "CountWordsError.py",
         "timeout": 60,
         "successed": true,
-        "lastRun": "01-09-2017",
+        "lastRun": "01-10-2017",
         "active": true
     },
     {
         "name": "Error",
+        "version": "0.1",
         "description": "Error tool description",
         "url": "http://www.foo.bar",
         "command": "python",
         "main": "Error.py",
         "timeout": 60,
         "successed": false,
-        "lastRun": "01-09-2017",
+        "lastRun": "01-10-2017",
         "active": true
     }
 ]
