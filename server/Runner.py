@@ -3,6 +3,7 @@ import os
 from subprocess import run, PIPE
 import datetime
 import resource
+from FTPClient import *
 
 class Runner:
     def __init__(self, params):
@@ -14,16 +15,7 @@ class Runner:
         tries = 0
         while not self.successed and tries < FAIL_LIMIT:
             try:
-                destination = ROOT+FTP+self.name+"/"+self.version+"/"
-
-                # Delete previous contents
-                for f in os.listdir(destination):
-                    fPath = os.path.join(destination, f)
-                    try:
-                        if os.path.isfile(fPath):
-                            os.unlink(fPath)
-                    except Exception as e:
-                        print(e)
+                destination = ROOT+OUTPUT+self.name+"/"+self.version+"/"
 
                 # Set log files
                 stderrf = open(destination+"std.err","wb")
@@ -41,3 +33,27 @@ class Runner:
                 tries += 1
                 pass
             self.lastRun = datetime.datetime.now().strftime("%m-%d-%Y")
+            self.pushToFTP()
+
+    def pushToFTP(self):
+        output = ROOT+OUTPUT+self.name+"/"+self.version+"/"
+
+        # Push output folder contents
+        # 1. Set up FTP
+        ftpc = FTPClient(FTP_ADDRESS, FTP_USERNAME, FTP_PASSWORD)
+        # 2. Go the the right directory, or create it
+        ftpc.cdTree(self.name+"/"+self.version+"/")
+        # 3. Upload all files
+        for f in os.listdir(output):
+            ftpc.upload(output, f)
+        # 4. Close session
+        ftpc.quit()
+
+        # Delete that content locally
+        for f in os.listdir(output):
+            fPath = os.path.join(output, f)
+            try:
+                if os.path.isfile(fPath):
+                    os.unlink(fPath)
+            except Exception as e:
+                print(e)
