@@ -37,5 +37,19 @@
         "successed": false,
         "lastRun": "01-10-2017",
         "active": true
+    },
+    {
+        "name": "asd",
+        "email": "asdasd@asdasd.com",
+        "url": "asdas",
+        "description": "asdasdasd",
+        "version": "N\/A",
+        "command": "N\/A",
+        "main": "N\/A",
+        "timeout": 60,
+        "successed": false,
+        "lastRun": "N\/A",
+        "active": true,
+        "authentication": "58755033384cd"
     }
 ]
