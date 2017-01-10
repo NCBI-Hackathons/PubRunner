@@ -1,6 +1,11 @@
 #!/usr/bin/env RScript
 
-library(RCurl)
+pkgs<-c("RCurl","httr")
+for(i in 1:length(pkgs)){
+  if(require(pkgs[i], character.only = TRUE)==FALSE){ install.packages(pkgs[i]);library(pkgs[i], character.only = TRUE)}
+  else { library(pkgs[i],character.only = TRUE)}
+}
+
 # updates data 
 
 #baselinedata<-"/home/ubuntu/PubRunner/Data/ftp_download/pubmed/baseline" # keep all files in a dir ?
