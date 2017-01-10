@@ -1,5 +1,6 @@
 import argparse
 import xml.etree.cElementTree as etree
+import os
 from os import listdir
 from os.path import isfile, join
 import random

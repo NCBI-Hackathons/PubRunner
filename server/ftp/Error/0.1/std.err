@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "tools/Error/0.1/Error.py", line 10, in <module>
+    raise RuntimeError('This fails every time')
+RuntimeError: This fails every time
