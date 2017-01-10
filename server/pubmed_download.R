@@ -5,7 +5,6 @@ library(RCurl)
 
 #baselinedata<-"/home/ubuntu/PubRunner/Data/ftp_download/pubmed/baseline" # keep all files in a dir ?
 #updatesdata<-"/home/ubuntu/PubRunner/Data/ftp_download/pubmed/updates" # else separately stored 
-
 # baseline xml files 
 url = "ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline" # update files
 base_filenames = getURL(url, ftp.use.epsv = FALSE, dirlistonly = TRUE)
