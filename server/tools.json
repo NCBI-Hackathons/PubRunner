@@ -1,6 +1,8 @@
 [
     {
         "name": "CountWords",
+        "description": "CountWords tool description",
+        "url": "http://www.foo.bar",
         "command": "python",
         "main": "CountWords.py",
         "timeout": 60,
@@ -10,6 +12,8 @@
     },
     {
         "name": "CountWordsError",
+        "description": "CountWordsError tool description",
+        "url": "http://www.foo.bar",
         "command": "python",
         "main": "CountWordsError.py",
         "timeout": 60,
@@ -19,6 +23,8 @@
     },
     {
         "name": "Error",
+        "description": "Error tool description",
+        "url": "http://www.foo.bar",
         "command": "python",
         "main": "Error.py",
         "timeout": 60,

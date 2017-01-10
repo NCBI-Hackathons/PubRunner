@@ -1,19 +1,19 @@
-import json
+from Utilities import *
 from Runner import *
 
-# Load list of available tools
-with open('tools.json') as toolsJSON:
-    toolList = json.load(toolsJSON)
+# Load tool list
+tools = loadTools()
 
-updatedList = []
-for tool in toolList:
+# Now launch every tool
+updatedTools = []
+for tool in tools:
     # Only launch those that are active
     if tool["active"] == True:
-        runner = Runner(tool["name"], tool["command"], tool["main"], tool["timeout"], tool["successed"], tool["lastRun"], tool["active"])
+        runner = Runner(tool)
         runner.run()
-        updatedList.append(runner.__dict__)
+        updatedTools.append(runner.__dict__)
     else:
-        updatedList.append(tool)
+        updatedTools.append(tool)
 
-with open("tools.json", "w") as f:
-    json.dump(updatedList, f, indent = 4)
+# Update the tools.json file
+updateTools(updatedTools)
