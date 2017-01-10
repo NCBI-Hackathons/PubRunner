@@ -3,8 +3,8 @@
 library(RCurl)
 # updates data 
 
-baselinedata<-"/home/ubuntu/PubRunner/Data/ftp_download/pubmed/baseline" # keep all files in a dir ?
-updatesdata<-"/home/ubuntu/PubRunner/Data/ftp_download/pubmed/updates" # else separately stored 
+#baselinedata<-"/home/ubuntu/PubRunner/Data/ftp_download/pubmed/baseline" # keep all files in a dir ?
+#updatesdata<-"/home/ubuntu/PubRunner/Data/ftp_download/pubmed/updates" # else separately stored 
 
 # baseline xml files 
 url = "ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline" # update files
