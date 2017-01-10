@@ -1,0 +1,15 @@
+[
+    {
+		"authentication": "ghyewovnekrthalfhwrltjalgw",
+        "name": "CountWordsError",
+        "version": "0.1",
+        "description": "CountWordsError tool description",
+        "url": "http://www.foo.bar",
+        "command": "python",
+        "main": "CountWordsError.py",
+        "timeout": 60,
+        "successed": true,
+        "lastRun": "01-15-2017",
+        "active": true
+    }
+]

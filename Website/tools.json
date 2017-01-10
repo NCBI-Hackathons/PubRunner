@@ -1,4 +1,0 @@
-[
-  { "toolname" : "Word CountsX", "description" : "This is the bestest tool.", "code" : "https://github.com/NCBI-Hackathons/svcompare", "ftp" : "ftp://ftp.ncbi.nlm.nih.gov/dbgap/", "status" : 1, "lastdate" : "01/01/1970 01:00am"  } ,
-  { "toolname" : "Broken Word CountsX", "description" : "This is a less good tool.", "code" : "https://github.com/NCBI-Hackathons/svcompare", "ftp" : "ftp://ftp.ncbi.nlm.nih.gov/dbgap/", "status" : 0, "lastdate" : "01/01/1970 01:00am"  }
-]
