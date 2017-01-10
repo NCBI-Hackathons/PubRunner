@@ -18,8 +18,8 @@ class Runner:
                 destination = ROOT+OUTPUT+self.name+"/"+self.version+"/"
 
                 # Set log files
-                stderrf = open(destination+"std.err","wb")
-                stdoutf = open(destination+"std.out","wb")
+                stderrf = open(destination+"PubRunnerLogs/std.err","wb")
+                stdoutf = open(destination+"PubRunnerLogs/std.out","wb")
                 process = run([self.command,
                               "tools/"+self.name+"/"+self.version+"/"+self.main,
                               "-i"+ROOT+DB,
@@ -28,12 +28,18 @@ class Runner:
                               stderr=stderrf,
                               timeout=self.timeout,
                               check=True)
+
                 self.successed = True
             except:
                 tries += 1
                 pass
             self.lastRun = datetime.datetime.now().strftime("%m-%d-%Y")
-            self.pushToFTP()
+
+            # Also log PubRunner data information
+            with open(destination+"PubRunnerLogs/info.txt", "w") as f:
+                f.write("PubRunner version: "+str(VERSION)+"\nRun on "+self.lastRun)
+
+            # self.pushToFTP()
 
     def pushToFTP(self):
         output = ROOT+OUTPUT+self.name+"/"+self.version+"/"
