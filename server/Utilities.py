@@ -63,10 +63,12 @@ def addTool(params):
         tools.append(params)
     updateTools(tools)
 
-    # Create the FTP folder
+    # Create the output folder
     ftpPath = FTP+params["name"]+"/"+params["version"]
     if not os.path.exists(ftpPath):
         os.makedirs(ftpPath)
+    if not os.path.exists(ftpPath+"PubRunnerLogs"):
+        os.makedirs(ftpPath+"PubRunnerLogs")
 
     # Create the tool folder
     toolPath = TOOLS+params["name"]+"/"+params["version"]
