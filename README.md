@@ -13,20 +13,21 @@ run them through your favorite text mining tool and then uploads the results to 
 
 #How to use PubRunner
 
-###Installation options:
+##Installation options:
 
-Docker Option:
-  get docker image set it up
+###Docker Option:
+  1. Clone docker image set it up.
 
 
 ###Non-Docker Option:
 
-Clone repo or Download to appropriate directory
-Source code for PubRunner is found at https://github.com/NCBI-Hackathons/PubRunner/tree/master/server.
+1. Clone repo or Download to appropriate directory.
+    Source code for PubRunner is found at https://github.com/NCBI-Hackathons/PubRunner/tree/master/server.
 
 #Configuration
-  Update the JSON file (https://github.com/NCBI-Hackathons/PubRunner/blob/master/server/tools.json) with your tool's          information
-      provide an example parameter file to demonstrate a configuration.
+  - Update the JSON file (https://github.com/NCBI-Hackathons/PubRunner/blob/master/server/tools.json) with your tool's          information
+  
+  - Provide an example parameter file to demonstrate a configuration.
 
-  set the Cron Job
+  - set the Cron Job
 
