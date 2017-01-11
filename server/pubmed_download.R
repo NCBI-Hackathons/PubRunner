@@ -1,13 +1,15 @@
 #!/usr/bin/env RScript
 
+print("ok")
+
 pkgs<-c("RCurl","httr")
 for(i in 1:length(pkgs)){
   if(require(pkgs[i], character.only = TRUE)==FALSE){ install.packages(pkgs[i]);library(pkgs[i], character.only = TRUE)}
   else { library(pkgs[i],character.only = TRUE)}
 }
-setwd("/home/ubuntu/PubRunner/server/medline") # all xml files would be stored in medline dir
-#baselinedata<-"/home/ubuntu/PubRunner/Data/ftp_download/pubmed/baseline" # 
-#updatesdata<-"/home/ubuntu/PubRunner/Data/ftp_download/pubmed/updates" # all files kept in medline dir
+
+setwd("medline") # all xml files would be stored in medline dir
+
 url = "ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline/" # update files
 base_filenames = getURL(url, ftp.use.epsv = FALSE, dirlistonly = TRUE)
 base_filenames<-strsplit(base_filenames, "\n")
