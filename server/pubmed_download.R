@@ -8,7 +8,7 @@ library(httr)
 #  else { library(pkgs[i],character.only = TRUE)}
 #}
 
-setwd("medline") # all xml files would be stored in medline dir
+setwd("/app/medline") # all xml files would be stored in medline dir
 
 url = "ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline/" # update files
 base_filenames = getURL(url, ftp.use.epsv = FALSE, dirlistonly = TRUE)
