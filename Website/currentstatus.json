@@ -51,5 +51,19 @@
         "lastRun": "N\/A",
         "active": true,
         "authentication": "58755033384cd"
+    },
+    {
+        "name": "Test Tool",
+        "email": "test@tool.com",
+        "url": "http:\/\/www.yahoo.com",
+        "description": "This tool is awesome.",
+        "version": "N\/A",
+        "command": "N\/A",
+        "main": "N\/A",
+        "timeout": 60,
+        "successed": false,
+        "lastRun": "N\/A",
+        "active": true,
+        "authentication": "5876918e3136e"
     }
 ]
