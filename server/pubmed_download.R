@@ -6,7 +6,7 @@ install.packages("httr",repos='http://cran.us.r-project.org')
 library(httr)
 
 
-setwd("/app/medline") # all xml files would be stored in medline dir
+setwd("medline") # all xml files would be stored in medline dir
 
 url = "ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline/" # update files
 base_filenames = getURL(url, ftp.use.epsv = FALSE, dirlistonly = TRUE)
@@ -41,5 +41,5 @@ for (filename in filenames){
 # logname>>paste(format(Sys.time(),"%Y-%m-%d), "log", sep = ".")"%Y-%m-%d %H:%M:%S"
 # paste(format(Sys.time(), "%Y-%m-%d %I-%p"), "log", sep = ".")
 
-#write.table(filename1, file = logname, row.names = FALSE, 
+#write.table(filename1, file = logname, row.names = FALSE,
 #            append = TRUE, col.names = TRUE, sep = ", ")

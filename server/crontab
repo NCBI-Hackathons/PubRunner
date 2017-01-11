@@ -1,1 +1,1 @@
-* * * * * /bin/bash pubrunner.sh >> /var/log/cron.log 2>&1
+* * * * * root cd /app && /bin/bash pubrunner.sh >> /var/log/cron.log 2>&1

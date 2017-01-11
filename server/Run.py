@@ -9,6 +9,7 @@ updatedTools = []
 for tool in tools:
     # Only launch those that are active
     if tool["active"] == True:
+        print("yup")
         runner = Runner(tool)
         runner.run()
         updatedTools.append(runner.__dict__)
