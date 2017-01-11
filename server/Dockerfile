@@ -1,7 +1,10 @@
 FROM ubuntu:latest
 MAINTAINER nicolas.fiorini@nih.gov
 
-RUN apt-get update && apt-get -y install cron r-base libcurl4-gnutls-dev
+RUN apt-get update && apt-get -y install cron
+RUN apt-get -y install r-base
+RUN apt-get -y install libcurl4-gnutls-dev
+RUN apt-get -y install openssl
 
 # Add crontab file in the cron directory
 ADD crontab /etc/cron.d/pubrunner
