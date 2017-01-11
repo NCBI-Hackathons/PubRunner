@@ -18,8 +18,8 @@ run them through your favorite text mining tool and then uploads the results to 
 If you want to use Docker
 
 ###Docker Option:
-  1. `docker pull ftp_pubrunner` command to pull the image from the DockerHub (hyperlink
-  2. `docker run -p 80:80 ftp_pubrunner` Run the docker image from the master shell script
+  1. `docker pull ncbihackathons/pubrunner` command to pull the image from the DockerHub (hyperlink
+  2. `docker run ncbihackathons/pubrunner` Run the docker image from the master shell script
 
 
 ###Non-Docker Option:
