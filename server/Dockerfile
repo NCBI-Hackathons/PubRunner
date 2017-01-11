@@ -1,10 +1,11 @@
 FROM ubuntu:latest
-MAINTAINER docker@ekito.fr
+MAINTAINER nicolas.fiorini@nih.gov
 
-RUN apt-get update && apt-get -y install cron r-base
+RUN apt-get update && apt-get -y install cron r-base libcurl4-gnutls-dev
 
 # Add crontab file in the cron directory
 ADD crontab /etc/cron.d/pubrunner
+ADD . /app
 
 # Give execution rights on the cron job
 RUN chmod 0644 /etc/cron.d/pubrunner
@@ -13,4 +14,5 @@ RUN chmod 0644 /etc/cron.d/pubrunner
 RUN touch /var/log/cron.log
 
 # Run the command on container startup
-CMD cron && tail -f /var/log/cron.log
+#CMD cron && tail -f /var/log/cron.log
+CMD Rscript /app/pubmed_download.R
