@@ -1,9 +1,9 @@
 <?php
 
-	$name = $_POST['name'];
-	$email = $_POST['email'];
-	$codeurl = $_POST['codeurl'];
-	$description = $_POST['description'];
+	$name = strip_tags ($_POST['name']);
+	$email = strip_tags ($_POST['email']);
+	$codeurl = strip_tags ($_POST['codeurl']);
+	$description = strip_tags ($_POST['description']);
 
 	$currentStatusFile = "currentstatus.json";
 	$currentStatusData = json_decode(file_get_contents($currentStatusFile), true);
@@ -11,7 +11,8 @@
 	$newTool = [];
 	$newTool['name'] = $name;
 	$newTool['email'] = $email;
-	$newTool['url'] = $codeurl;
+	$newTool['codeurl'] = $codeurl;
+	$newTool['dataurl'] = "";
 	$newTool['description'] = $description;
 	
 	$newTool['version'] = "N/A";
