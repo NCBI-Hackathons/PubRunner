@@ -1,36 +1,3 @@
-<?php
-
-	$name = $_POST['name'];
-	$email = $_POST['email'];
-	$codeurl = $_POST['codeurl'];
-	$description = $_POST['description'];
-
-	$currentStatusFile = "currentstatus.json";
-	$currentStatusData = json_decode(file_get_contents($currentStatusFile), true);
-
-	$newTool = [];
-	$newTool['name'] = $name;
-	$newTool['email'] = $email;
-	$newTool['url'] = $codeurl;
-	$newTool['description'] = $description;
-	
-	$newTool['version'] = "N/A";
-	$newTool['command'] = "N/A";
-	$newTool['main'] = "N/A";
-	$newTool['timeout'] = 60;
-	$newTool['successed'] = false;
-	$newTool['lastRun'] = "N/A";
-	$newTool['active'] = true;
-	
-	$authentication = uniqid();
-	$newTool['authentication'] = $authentication;
-	
-	$currentStatusData[] = $newTool;
-	file_put_contents($currentStatusFile,json_encode($currentStatusData, JSON_PRETTY_PRINT));
-	
-	
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -81,19 +48,34 @@
       </div>
 
       <div class="jumbotron">
-        <h1>Yay, tool added</h1>
-        <p class="lead">Below is a little bit of JSON. If you follow the tutorial for getting your own PubRunner instance working, you'll see that you need to put this JSON into your tools.json file.</p>
+        <h1>Results</h1>
+        <p class="lead">Here are all the tools currently using PubRunner, their code and data locations and their current status.</p>
       </div>
 
-	  <div>
-		
-		  <?php 
-				echo "<pre>";
-				
-				echo json_encode($newTool, JSON_PRETTY_PRINT);
-				
-				echo "</pre>";
-			?>
+	  <div ng-app="pubrunnerApp" ng-controller="appControl">
+      <table class="table table-bordered">
+		  <thead>  
+				<tr>
+				  <th>Status</th>
+				  <th>Tool Name</th>
+				  <th>Description</th>
+				  <th>Code</th>
+				  <th>Latest Run</th>
+				  <th>Latest Output</th>
+				</tr>
+		  </thead>
+		  
+		  <tbody>
+			<tr ng-repeat="x in names">
+			  <td><img width="30px" ng-src="{{x.successed ? 'assets/img/icon-success.png' : 'assets/img/icon-failure.png' }}" title="{{x.successed ? 'Tool successfully executed' : 'Tool failed to execute' }}" /></td>
+			  <td>{{x.name}}</td>
+			  <td>{{x.description}}</td>
+			  <td><a href="{{x.url}}">{{x.url}}</a></td>
+			  <td>{{x.lastRun}}</td>
+			  <td><a href="{{x.url}}">{{x.url}}</a></td>
+			</tr>
+		  </tbody>
+	  </table>
 	  </div>
 
       <footer class="footer">
@@ -113,5 +95,14 @@
     <script src="assets/js/jquery.tablecloth.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
 	
+    <script type="text/javascript" charset="utf-8">
+      var app = angular.module('pubrunnerApp', []);
+		app.controller('appControl', function($scope, $http) {		
+			$http.get('currentstatus.json').success(function(data) {
+				$scope.names = data;
+			}); 
+		});
+	  
+    </script>
   </body>
 </html>
