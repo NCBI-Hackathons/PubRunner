@@ -7,8 +7,6 @@
 		echo 'Unable to obtain lock';
 		exit(-1);
 	}
-	
-	fclose($fp);
 
 	$name = strip_tags ($_POST['name']);
 	$email = strip_tags ($_POST['email']);
@@ -126,3 +124,7 @@
 	
   </body>
 </html>
+
+<?php	
+	fclose($fp);
+?>
