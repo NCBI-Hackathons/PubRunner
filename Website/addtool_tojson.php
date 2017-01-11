@@ -42,7 +42,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/asset/img/favicon.ico">
 
-    <title>Narrow Jumbotron Template for Bootstrap</title>
+    <title>PubRunner - Added Tool</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
