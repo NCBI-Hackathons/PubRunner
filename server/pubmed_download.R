@@ -1,12 +1,12 @@
-#!/usr/bin/env RScript
-
-print("ok")
-
-pkgs<-c("RCurl","httr")
-for(i in 1:length(pkgs)){
-  if(require(pkgs[i], character.only = TRUE)==FALSE){ install.packages(pkgs[i]);library(pkgs[i], character.only = TRUE)}
-  else { library(pkgs[i],character.only = TRUE)}
-}
+install.packages("RCurl", repos='http://cran.us.r-project.org')
+library(RCurl)
+install.packages("httr", repos='http://cran.us.r-project.org')
+library(httr)
+#pkgs<-c("RCurl","httr")
+#for(i in 1:length(pkgs)){
+#  if(require(pkgs[i], character.only = TRUE)==FALSE){ install.packages(pkgs[i]);library(pkgs[i], character.only = TRUE)}
+#  else { library(pkgs[i],character.only = TRUE)}
+#}
 
 setwd("medline") # all xml files would be stored in medline dir
 

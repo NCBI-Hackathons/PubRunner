@@ -4,13 +4,14 @@ import os
 Definition of config parameters
 """
 
-### General
+### Static, do not touch
 VERSION = 0.1
+ROOT = os.path.dirname(os.path.realpath(__file__)) + "/"
 
+### General
 DB = "medline/"
 TOOLS = "tools/"
 OUTPUT = "output/"
-ROOT = os.path.dirname(os.path.realpath(__file__)) + "/"
 FAIL_LIMIT = 3
 
 ### FTP

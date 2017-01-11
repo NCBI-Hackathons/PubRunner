@@ -1,1 +1,1 @@
-* * * * * root R pubmed_download.R >> /var/log/cron.log 2>&1
+* * * * * R CMD BATCH pubmed_download.R >> /var/log/cron.log 2>&1
