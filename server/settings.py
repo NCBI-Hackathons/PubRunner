@@ -20,6 +20,6 @@ FTP_USERNAME = ""
 FTP_PASSWORD = ""
 
 ### WEBSITE
-WEB_ADDRESS = "ftp://www.pubrunner.com"
-WEB_USERNAME = "pubrunner"
-WEB_PASSWORD = "AwZR%ar75JEhNIeh"
+WEB_ADDRESS = " "
+WEB_USERNAME = ""
+WEB_PASSWORD = ""
