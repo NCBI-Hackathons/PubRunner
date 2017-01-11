@@ -1,5 +1,15 @@
 <?php
 
+	$fp = fopen('lock.txt', 'w');
+
+	/* Activate the LOCK_NB option on an LOCK_EX operation */
+	if(!flock($fp, LOCK_EX | LOCK_NB)) {
+		echo 'Unable to obtain lock';
+		exit(-1);
+	}
+	
+	fclose($fp);
+
 	$name = strip_tags ($_POST['name']);
 	$email = strip_tags ($_POST['email']);
 	$codeurl = strip_tags ($_POST['codeurl']);
