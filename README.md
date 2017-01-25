@@ -1,15 +1,15 @@
 ![Logo](logo.png)
 
-This project was part of the [January 2017 NCBI Hackathon](https://www.ncbi.nlm.nih.gov/news/11-17-2016-biomedical-informatics-hackathon/)
-
-And here's an overview.
-
-![Overview diagram](overview.png)
+PubRunner's website is at http://www.pubrunner.org. This project was part of the [January 2017 NCBI Hackathon](https://www.ncbi.nlm.nih.gov/news/11-17-2016-biomedical-informatics-hackathon/)
 
 #What is PubRunner
 
 PubRunner is a framework which runs on a user defined schedule allowing you to download latest PubMed abstracts,
 run them through your favorite text mining tool and then uploads the results to Public FTP. Additionally the user has the option to post a link to their FTP on the public PubRunner website (www.pubrunner.org).
+
+The overview below shows how PubRunner manages a "black-box text-mining tool".
+
+![Overview diagram](overview.png)
 
 #How to use PubRunner
 
