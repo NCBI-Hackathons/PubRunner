@@ -10,7 +10,7 @@ Biomedical text-mining (natural langugage processing) tools are used for a varie
 
 These analyses are only as accurate as the underlying text being analysed (generally abstracts from PubMed). And the problem is that there are new abstracts published daily. These analyses are rarely kept up-to-date with the latest publications. So we want to solve the problem of rerunning an analysis using the latest publications and doing it regularly.
 
-#Why is this a good thing?
+#Why should we solve it?
 
 We want text mining analyses to be a reliable method to peruse the latest publication and understand the latest knowledge on how different biomedical concepts (e.g. proteins. drugs. etc) interact. If this happens, then text mining could become a regular tool for biomedical researchers.
 
