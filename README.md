@@ -4,7 +4,7 @@ PubRunner's website is at http://www.pubrunner.org. This project was part of the
 
 #What is biomedical text mining?
 
-Biomedical text-mining (natural langugage processing) tools are used for a variety of purposes related to health outcomes research. They can aggregate knowledge from large quantities of published academic literature, making the task of perusing the latest literature a much easier task. They help with guided search through PubMed, build protein-protein interaction networks automatically, find interactions between genes and diseases and lots more. But there's a big problem!
+Biomedical text-mining (natural language processing) tools are used for a variety of purposes related to health outcomes research. They can aggregate knowledge from large quantities of published academic literature, making the task of perusing the latest literature a much easier task. They help with guided search through PubMed, build protein-protein interaction networks automatically, find interactions between genes and diseases and lots more. But there's a big problem!
 
 #What's the problem?
 
