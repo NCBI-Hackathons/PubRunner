@@ -2,19 +2,19 @@
 
 PubRunner's website is at http://www.pubrunner.org. This project was part of the [January 2017 NCBI Hackathon](https://www.ncbi.nlm.nih.gov/news/11-17-2016-biomedical-informatics-hackathon/)
 
-#What is biomedical text mining?
+# What is biomedical text mining?
 
 Biomedical text-mining (natural language processing) tools are used for a variety of purposes related to health outcomes research. They can aggregate knowledge from large quantities of published academic literature, making the task of perusing the latest literature a much easier task. They help with guided search through PubMed, build protein-protein interaction networks automatically, find interactions between genes and diseases and lots more. But there's a big problem!
 
-#What's the problem?
+# What's the problem?
 
 These analyses are only as accurate as the underlying text being analysed (generally abstracts from PubMed). And the problem is that there are new abstracts published daily. These analyses are rarely kept up-to-date with the latest publications. So we want to solve the problem of rerunning an analysis using the latest publications and doing it regularly.
 
-#Why should we solve it?
+# Why should we solve it?
 
 We want text mining analyses to be a reliable method to peruse the latest publication and understand the latest knowledge on how different biomedical concepts (e.g. proteins. drugs. etc) interact. If this happens, then text mining could become a regular tool for biomedical researchers.
 
-#What is PubRunner?
+# What is PubRunner?
 
 PubRunner is a framework which runs on a user defined schedule allowing you to download latest PubMed abstracts,
 run them through your favorite text mining tool and then uploads the results to public FTP. Additionally the user has the option to post a link to their FTP on the public PubRunner website (www.pubrunner.org).
@@ -23,7 +23,7 @@ The overview below shows how PubRunner manages a "black-box text-mining tool".
 
 ![Overview diagram](overview.png)
 
-#How to use PubRunner
+# How to use PubRunner
 
 ##Installation options:
 
