@@ -68,3 +68,7 @@ PubRunner keeps track of every tool in the tools.json file. Some parameters in t
   - Provide an example parameter file to demonstrate a configuration.
 
   - set the Cron Job
+
+# Testing
+
+We tested three different scripts with PubRunner. They can be found in [server/tools/](server/tools/) . Two of the tools [CountWordsError](server/tools/CountWordsError/0.1) and [Error](server/tools/Error/0.1/Error.py) are designed to fail either randomly or consistently to make sure that PubRunner can manage failures. The third script [CountWords](server/tools/CountWords/0.1) does a basic word count of PubMed abstracts as a very simple example usage of PubRunner and should not fail.
