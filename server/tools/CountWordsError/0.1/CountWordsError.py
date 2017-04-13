@@ -20,32 +20,33 @@ def processMedlineFolder(medlineFolder,outFolder):
 	# List of all files in the directory
 	files = [f for f in listdir(medlineFolder) if isfile(join(medlineFolder, f)) and ".DS_Store" not in f]
 
-	# Iterate over all files
-	for f in files:
-		# Iterate through the XML file and stop on each MedlineCitation
-		for event, elem in etree.iterparse(medlineFolder+f, events=('start', 'end', 'start-ns', 'end-ns')):
-			if (event=='end' and elem.tag=='MedlineCitation'):
+	with open(outFolder+"countWordsError.txt", "a") as result:
+		# Iterate over all files
+		for f in files:
+			# Iterate through the XML file and stop on each MedlineCitation
+			for event, elem in etree.iterparse(medlineFolder+f, events=('start', 'end', 'start-ns', 'end-ns')):
+				if (event=='end' and elem.tag=='MedlineCitation'):
 
-				# Let's get the PMID and Abstract elements from the XML
-				pmidElements = elem.findall('./PMID')
-				abstractElements = elem.findall('./Article/Abstract/AbstractText')
+					# Let's get the PMID and Abstract elements from the XML
+					pmidElements = elem.findall('./PMID')
+					abstractElements = elem.findall('./Article/Abstract/AbstractText')
 
-				if len(pmidElements) != 1 or len(abstractElements) != 1:
-					continue
+					if len(pmidElements) != 1 or len(abstractElements) != 1:
+						continue
 
-				# Pull the values of the PMID and abstract elements
-				pmid = pmidElements[0].text
-				abstract = abstractElements[0].text
+					# Pull the values of the PMID and abstract elements
+					pmid = pmidElements[0].text
+					abstract = abstractElements[0].text
 
-				# Do a very basic word count
-				wordCount = len(abstract.split())
+					# Do a very basic word count
+					wordCount = len(abstract.split())
 
-				# Prepare and save output to file
-				line = "%s\t%d\n" % (pmid,wordCount)
-				with open(outFolder+"countWordsError.txt", "a") as result:
+					# Prepare and save output to file
+					line = "%s\t%d\n" % (pmid,wordCount)
+
 					result.write(line)
 
-				abstractCount += 1
+					abstractCount += 1
 
 	print "%d abstracts processed" % abstractCount
 
