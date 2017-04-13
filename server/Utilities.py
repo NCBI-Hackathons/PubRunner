@@ -40,7 +40,7 @@ def addTool(params):
     """
 
     # First, augment attributes
-    params["successed"] = None
+    params["success"] = None
     params["lastRun"] = None
     params["active"] = True
 
@@ -55,7 +55,7 @@ def addTool(params):
             # If it's not, update the version and reset a few parameters
             exists = True
             tool["version"] = params["version"]
-            tool["successed"] = params["successed"]
+            tool["success"] = params["success"]
             tool["lastRun"] = params["lastRun"]
 
     # Update the JSON file
@@ -74,3 +74,4 @@ def addTool(params):
     toolPath = TOOLS+params["name"]+"/"+params["version"]
     if not os.path.exists(toolPath):
         os.makedirs(toolPath)
+

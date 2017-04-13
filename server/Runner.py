@@ -11,9 +11,9 @@ class Runner:
         self.__dict__ = params
 
     def run(self):
-        self.successed = False
+        self.success = False
         tries = 0
-        while not self.successed and tries < FAIL_LIMIT:
+        while not self.success and tries < FAIL_LIMIT:
             # Make sure that the directory for output is created
             destination = ROOT+OUTPUT+self.name+"/"+self.version+"/"
             if not os.path.isdir(destination+"PubRunnerLogs/"):
@@ -34,7 +34,7 @@ class Runner:
                               timeout=self.timeout,
                               check=True)
 
-                self.successed = True
+                self.success = True
             except:
                 tries += 1
                 pass

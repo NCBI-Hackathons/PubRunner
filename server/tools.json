@@ -9,7 +9,7 @@
         "incremental": true,
         "main": "CountWords.py",
         "timeout": 60,
-        "successed": true,
+        "success": true,
         "lastRun": "01-10-2017",
         "active": true
     },
@@ -23,7 +23,7 @@
         "incremental": false,
         "main": "CountWordsError.py",
         "timeout": 60,
-        "successed": true,
+        "success": true,
         "lastRun": "01-10-2017",
         "active": true
     },
@@ -37,7 +37,7 @@
         "incremental": false,
         "main": "Error.py",
         "timeout": 60,
-        "successed": false,
+        "success": false,
         "lastRun": "01-10-2017",
         "active": true
     }
