@@ -25,7 +25,7 @@ def updateTools(tools):
 		Nothing
     """
     with open("tools.json", "w") as f:
-        json.dump(tools, f, indent = 4)
+        json.dump(tools, f, indent = 4, sort_keys=True)
 
 def addTool(params):
     """
