@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+set -euxo pipefail
 
 # DL last data
 Rscript pubmed_download.R
