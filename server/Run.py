@@ -1,5 +1,7 @@
 from Utilities import *
 from Runner import *
+import json
+import requests
 
 # Load tool list
 tools = loadTools()
@@ -14,12 +16,15 @@ for tool in tools:
         runner.run()
 
         if runner.success:
+            print("Run was successful")
             if USE_FTP:
                 print("Pushing results to FTP")
                 runner.pushToFTP()
             else:
                 print("Pushing results to local directory")
                 runner.pushToLocalDirectory()
+        else:
+            print("Run failed")
 
         updatedTools.append(runner.__dict__)
     else:
@@ -28,4 +33,9 @@ for tool in tools:
 # Update the tools.json file
 updateTools(updatedTools)
 
-# TODO: push the new JSON file to website
+# Push the new JSON file to website
+print("Sending update to http://www.pubrunner.org")
+with open('tools.json') as f:
+	r = requests.post('http://www.pubrunner.org/update.php', files={'jsonFile': f})
+	#print(r.text)
+
