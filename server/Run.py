@@ -12,9 +12,14 @@ for tool in tools:
         print("Running %s" % tool["name"])
         runner = Runner(tool)
         runner.run()
-	
-        print("Pushing results to FTP")
-        runner.pushToFTP()
+
+        if runner.success:
+            if USE_FTP:
+                print("Pushing results to FTP")
+                runner.pushToFTP()
+            else:
+                print("Pushing results to local directory")
+                runner.pushToLocalDirectory()
 
         updatedTools.append(runner.__dict__)
     else:
