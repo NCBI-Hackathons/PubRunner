@@ -3,6 +3,7 @@ import os
 from subprocess import run, PIPE
 import datetime
 import resource
+import shutil
 from FTPClient import *
 
 class Runner:
@@ -11,11 +12,16 @@ class Runner:
         self.__dict__ = params
 
     def run(self):
-        self.successed = False
+        self.success = False
         tries = 0
-        while not self.successed and tries < FAIL_LIMIT:
+        while not self.success and tries < FAIL_LIMIT:
+            # Make sure that the directory for output is created
+            destination = ROOT+OUTPUT+self.name+"/"+self.version+"/"
+            if not os.path.isdir(destination+"PubRunnerLogs/"):
+                os.makedirs(destination+"PubRunnerLogs/")
+
             try:
-                destination = ROOT+OUTPUT+self.name+"/"+self.version+"/"
+
 
                 # Set log files
                 stderrf = open(destination+"PubRunnerLogs/std.err","wb")
@@ -29,7 +35,7 @@ class Runner:
                               timeout=self.timeout,
                               check=True)
 
-                self.successed = True
+                self.success = True
             except:
                 tries += 1
                 pass
@@ -39,10 +45,14 @@ class Runner:
             with open(destination+"PubRunnerLogs/info.txt", "w") as f:
                 f.write("PubRunner version: "+str(VERSION)+"\nRun on "+self.lastRun)
 
-            # self.pushToFTP()
-
     def pushToFTP(self):
+        assert FTP_ADDRESS != '', 'FTP address must be completed in the setting.py file'
+        assert FTP_USERNAME != '', 'FTP username must be completed in the setting.py file'
+        assert FTP_PASSWORD != '', 'FTP password must be completed in the setting.py file'
+
         output = ROOT+OUTPUT+self.name+"/"+self.version+"/"
+
+	# N.B. This doesn't recursively copy files
 
         # Push output folder contents
         # 1. Set up FTP
@@ -51,7 +61,9 @@ class Runner:
         ftpc.cdTree(self.name+"/"+self.version+"/")
         # 3. Upload all files
         for f in os.listdir(output):
-            ftpc.upload(output, f)
+            fPath = os.path.join(output, f)
+            if os.path.isfile(fPath):
+                ftpc.upload(output, f)
         # 4. Close session
         ftpc.quit()
 
@@ -63,3 +75,29 @@ class Runner:
                     os.unlink(fPath)
             except Exception as e:
                 print(e)
+    
+    def pushToLocalDirectory(self):
+        assert LOCAL_DIRECTORY != '', 'Local directory must be completed in the setting.py file'
+
+        output = ROOT+OUTPUT+self.name+"/"+self.version+"/"
+
+        destDir = LOCAL_DIRECTORY.rstrip("/")+"/"+self.name+"/"+self.version+"/"
+        if not os.path.isdir(destDir):
+            os.makedirs(destDir)
+
+	# N.B. This doesn't recursively copy files
+        for f in os.listdir(output):
+            src = os.path.join(output, f)
+            dst = os.path.join(destDir, f)
+            if os.path.isfile(src):
+                shutil.copyfile(src,dst)
+
+        # Delete that content locally
+        for f in os.listdir(output):
+            fPath = os.path.join(output, f)
+            try:
+                if os.path.isfile(fPath):
+                    os.unlink(fPath)
+            except Exception as e:
+                print(e)
+

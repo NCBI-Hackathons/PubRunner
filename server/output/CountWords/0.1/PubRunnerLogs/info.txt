@@ -1,2 +1,0 @@
-PubRunner version: 0.1
-Run on 01-10-2017

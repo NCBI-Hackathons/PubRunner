@@ -9,9 +9,18 @@ updatedTools = []
 for tool in tools:
     # Only launch those that are active
     if tool["active"] == True:
-        print("yup")
+        print("Running %s" % tool["name"])
         runner = Runner(tool)
         runner.run()
+
+        if runner.success:
+            if USE_FTP:
+                print("Pushing results to FTP")
+                runner.pushToFTP()
+            else:
+                print("Pushing results to local directory")
+                runner.pushToLocalDirectory()
+
         updatedTools.append(runner.__dict__)
     else:
         updatedTools.append(tool)

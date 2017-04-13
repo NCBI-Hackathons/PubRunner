@@ -9,7 +9,7 @@
         "command": "python",
         "main": "CountWords.py",
         "timeout": 60,
-        "successed": true,
+        "success": true,
         "lastRun": "01-10-2017",
         "active": true
     }
