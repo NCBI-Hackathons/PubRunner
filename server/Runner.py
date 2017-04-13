@@ -14,8 +14,13 @@ class Runner:
         self.successed = False
         tries = 0
         while not self.successed and tries < FAIL_LIMIT:
+            # Make sure that the directory for output is created
+            destination = ROOT+OUTPUT+self.name+"/"+self.version+"/"
+            if not os.path.isdir(destination+"PubRunnerLogs/"):
+                os.makedirs(destination+"PubRunnerLogs/")
+
             try:
-                destination = ROOT+OUTPUT+self.name+"/"+self.version+"/"
+
 
                 # Set log files
                 stderrf = open(destination+"PubRunnerLogs/std.err","wb")
@@ -39,9 +44,11 @@ class Runner:
             with open(destination+"PubRunnerLogs/info.txt", "w") as f:
                 f.write("PubRunner version: "+str(VERSION)+"\nRun on "+self.lastRun)
 
-            # self.pushToFTP()
-
     def pushToFTP(self):
+        assert FTP_ADDRESS != '', 'FTP address must be completed in the setting.py file'
+        assert FTP_USERNAME != '', 'FTP username must be completed in the setting.py file'
+        assert FTP_PASSWORD != '', 'FTP password must be completed in the setting.py file'
+
         output = ROOT+OUTPUT+self.name+"/"+self.version+"/"
 
         # Push output folder contents
@@ -51,7 +58,8 @@ class Runner:
         ftpc.cdTree(self.name+"/"+self.version+"/")
         # 3. Upload all files
         for f in os.listdir(output):
-            ftpc.upload(output, f)
+            if os.path.isfile(output+f):
+                ftpc.upload(output, f)
         # 4. Close session
         ftpc.quit()
 
