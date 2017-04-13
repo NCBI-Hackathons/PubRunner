@@ -40,7 +40,7 @@ class Runner:
                 self.success = True
             except:
                 #print (Exception, err)
-                traceback.print_exc()
+                #traceback.print_exc()
                 tries += 1
                 pass
             self.lastRun = datetime.datetime.now().strftime("%m-%d-%Y")
