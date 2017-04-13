@@ -19,7 +19,7 @@ class FTPClient:
 
     def upload(self, path, filename):
         fh = open(os.path.join(path, filename),'rb')
-        session.storbinary('STOR '+filename, fh)
+        self.ftp.storbinary('STOR '+filename, fh)
         fh.close()
 
     def quit(self):
