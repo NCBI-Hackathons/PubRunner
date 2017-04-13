@@ -60,7 +60,7 @@ try {
 		if (in_array($authentication, $authentications))
 		{		
 			$key = $authentications[$authentication];
-			$currentStatusData[$key]['successed'] = $record['successed'];
+			$currentStatusData[$key]['success'] = $record['success'];
 			$currentStatusData[$key]['lastRun'] = $record['lastRun'];
 		}
 	}

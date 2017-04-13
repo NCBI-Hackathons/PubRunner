@@ -19,7 +19,7 @@
 	$newTool['command'] = "N/A";
 	$newTool['main'] = "N/A";
 	$newTool['timeout'] = 60;
-	$newTool['successed'] = false;
+	$newTool['success'] = false;
 	$newTool['lastRun'] = "N/A";
 	$newTool['active'] = true;
 	
