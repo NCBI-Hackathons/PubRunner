@@ -52,16 +52,25 @@ try {
 		$authentications[$authentication] = $key;
 	}
 	
+	echo "<pre>";
+	print_r($authentications);
+	echo "</pre>";
 	
 	foreach ($newStatusData as $record)
 	{
 		$authentication = $record['authentication'];
 		
-		if (in_array($authentication, $authentications))
+		if (array_key_exists($authentication, $authentications))
 		{		
+			echo "<pre>";
+			print_r($record);
+			echo "</pre>";
+			
 			$key = $authentications[$authentication];
 			$currentStatusData[$key]['success'] = $record['success'];
 			$currentStatusData[$key]['lastRun'] = $record['lastRun'];
+			$currentStatusData[$key]['codeurl'] = $record['codeurl'];
+			$currentStatusData[$key]['dataurl'] = $record['dataurl'];
 		}
 	}
 	echo "<pre>";
