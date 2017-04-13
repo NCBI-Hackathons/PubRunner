@@ -4,6 +4,8 @@ from subprocess import run, PIPE
 import datetime
 import resource
 import shutil
+import sys
+import traceback
 from FTPClient import *
 
 class Runner:
@@ -37,6 +39,8 @@ class Runner:
 
                 self.success = True
             except:
+                #print (Exception, err)
+                traceback.print_exc()
                 tries += 1
                 pass
             self.lastRun = datetime.datetime.now().strftime("%m-%d-%Y")

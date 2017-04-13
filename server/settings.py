@@ -14,10 +14,16 @@ TOOLS = "tools/"
 OUTPUT = "output/"
 FAIL_LIMIT = 3
 
+# Whether to use FTP or a local directory (that should be mounted as an FTP)
+USE_FTP = False
+
 ### FTP
 FTP_ADDRESS = ""
 FTP_USERNAME = ""
 FTP_PASSWORD = ""
+
+### LOCAL DIRECTORY
+LOCAL_DIRECTORY = ""
 
 ### WEBSITE
 WEB_ADDRESS = " "

@@ -2,8 +2,6 @@
 
 install.packages("RCurl",repos='http://cran.us.r-project.org')
 library(RCurl)
-install.packages("httr",repos='http://cran.us.r-project.org')
-library(httr)
 
 
 setwd("medline") # all xml files would be stored in medline dir
