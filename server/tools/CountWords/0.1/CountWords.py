@@ -38,15 +38,16 @@ def processMedlineFolder(medlineFolder,outFolder):
 					pmid = pmidElements[0].text
 					abstract = abstractElements[0].text
 
-					# Do a very basic word count
-					wordCount = len(abstract.split())
+					if not abstract is None:
+						# Do a very basic word count
+						wordCount = len(abstract.split())
 
-					# Prepare and save output to file
-					line = "%s\t%d\n" % (pmid,wordCount)
+						# Prepare and save output to file
+						line = "%s\t%d\n" % (pmid,wordCount)
 
-					result.write(line)
+						result.write(line)
 
-					abstractCount += 1
+						abstractCount += 1
 
 	print "%d abstracts processed" % abstractCount
 
