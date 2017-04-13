@@ -72,7 +72,7 @@
 			  <td>{{x.description}}</td>
 			  <td><a href="{{x.codeurl}}">Link</a></td>
 			  <td>{{x.lastRun}}</td>
-			  <td><a href="{{x.dataurl}}">Link</a></td>
+			  <td style="visibility:{{x.success ? 'visible' : 'hidden'}}"><a href="{{x.dataurl}}">Link</a></td>
 			</tr>
 		  </tbody>
 	  </table>
