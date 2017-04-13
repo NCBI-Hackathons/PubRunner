@@ -17,12 +17,19 @@ def processMedlineFolder(medlineFolder,outFolder):
 	abstractCount = 0
 
 	# List of all files in the directory
-	files = [f for f in listdir(medlineFolder) if isfile(join(medlineFolder, f)) and ".DS_Store" not in f]
+	files = [ f for f in listdir(medlineFolder) if isfile(join(medlineFolder, f)) ]
+	
+	# Filter for only XML files
+	files = [ f for f in files if f.endswith('xml') ]
 
+	# Make sure the out folder ends with a slash
+	if outFolder[-1] != '/':
+		outFolder += '/'
 
 	with open(outFolder+"countWords.txt", "a") as result:
 		# Iterate over all files
 		for f in files:
+			print "Processing %s" % f
 			# Iterate through the XML file and stop on each MedlineCitation
 			for event, elem in etree.iterparse(medlineFolder+f, events=('start', 'end', 'start-ns', 'end-ns')):
 				if (event=='end' and elem.tag=='MedlineCitation'):
