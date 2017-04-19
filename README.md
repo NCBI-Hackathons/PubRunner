@@ -1,6 +1,6 @@
 ![Logo](logo.png)
 
-![DOI: 10.5281/zenodo.545646](https://zenodo.org/badge/78131113.svg)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.556195.svg)](https://doi.org/10.5281/zenodo.556195)
 
 PubRunner's website is at http://www.pubrunner.org. This project was part of the [January 2017 NCBI Hackathon](https://www.ncbi.nlm.nih.gov/news/11-17-2016-biomedical-informatics-hackathon/)
 
