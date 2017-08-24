@@ -14,15 +14,25 @@ if __name__ == '__main__':
 				params={'access_token': ACCESS_TOKEN}, json={},
 				headers=headers)
 
+
 	print r.status_code
 	print json.dumps(r.json(),indent=2,sort_keys=True)
+	bucket = r.json()['links']['bucket']
+	print bucket
+	#sys.exit(0)
 
 	deposition_id = r.json()['id']
-	data = {'filename': 'myfirstfile.txt'}
-	files = {'file': open('myfirstfile.txt', 'rb')}
-	r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions/%s/files' % deposition_id,
-			params={'access_token': ACCESS_TOKEN}, data=data,
-			files=files)
+	filename='bigfile.txt'
+	#data = {'filename': filename}
+	#files = {'filename': open(filename, 'rb')}
+	r = requests.put('%s/%s/' % (bucket,filename),
+			#data=files,
+			data=open(filename, 'rb'),
+			#files=files, 
+			headers={"Accept":"application/json",
+			"Authorization":"Bearer %s" % ACCESS_TOKEN,
+			"Content-Type":"application/octet-stream"})
+
 
 	print r.status_code
 	print json.dumps(r.json(),indent=2,sort_keys=True)
