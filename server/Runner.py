@@ -138,8 +138,6 @@ class Runner:
                 'metadata': {
                         'title': self.name,
                         'upload_type': 'dataset',
-			'access_right': 'open',
-                        'license': 'cc-zero',
                         'description':  'Results from tool executed using PubRunner on MEDLINE corpus',
                         'creators': [{'name': ZENODO_AUTHOR,
                                 'affiliation': ZENODO_AUTHOR_AFFILIATION}]
