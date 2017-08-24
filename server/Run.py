@@ -6,6 +6,8 @@ import requests
 # Load tool list
 tools = loadTools()
 
+assert USE_FTP or USE_LOCALDIRECTORY or USE_ZENODO, "Must select one method for distributing data in the settings.py file"
+
 # Now launch tools
 updatedTools = []
 for tool in tools:
@@ -20,9 +22,12 @@ for tool in tools:
             if USE_FTP:
                 print("Pushing results to FTP")
                 runner.pushToFTP()
-            else:
+            elif USE_LOCALDIRECTORY:
                 print("Pushing results to local directory")
                 runner.pushToLocalDirectory()
+	    elif USE_ZENODO:
+	        print("Pushing results to Zenodo")
+		runner.pushToZenodo()
         else:
             print("Run failed")
 

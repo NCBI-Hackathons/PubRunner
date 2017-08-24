@@ -56,7 +56,7 @@ class Runner:
 
         output = ROOT+OUTPUT+self.name+"/"+self.version+"/"
 
-	# N.B. This doesn't recursively copy files
+        # N.B. This doesn't recursively copy files
 
         # Push output folder contents
         # 1. Set up FTP
@@ -89,7 +89,7 @@ class Runner:
         if not os.path.isdir(destDir):
             os.makedirs(destDir)
 
-	# N.B. This doesn't recursively copy files
+        # N.B. This doesn't recursively copy files
         for f in os.listdir(output):
             src = os.path.join(output, f)
             dst = os.path.join(destDir, f)
@@ -104,4 +104,51 @@ class Runner:
                     os.unlink(fPath)
             except Exception as e:
                 print(e)
+
+    def pushToZenodo(self):
+        with open('.accesstoken','r') as f:
+            ACCESS_TOKEN = f.read().strip()
+        
+        output = ROOT+OUTPUT+self.name+"/"+self.version+"/"
+
+        headers = {"Content-Type": "application/json"}
+        r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions',
+                        params={'access_token': ACCESS_TOKEN}, json={},
+                        headers=headers)
+
+        print r.status_code
+        print json.dumps(r.json(),indent=2,sort_keys=True)
+
+        for f in os.listdir(output):
+                deposition_id = r.json()['id']
+                data = {'filename': f}
+                files = {'file': open(f, 'rb')}
+                r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions/%s/files' % deposition_id,
+                                params={'access_token': ACCESS_TOKEN}, data=data,
+                                files=files)
+
+        print r.status_code
+        print json.dumps(r.json(),indent=2,sort_keys=True)
+
+        data = {
+                'metadata': {
+                        'title': ZENODO_TITLE,
+                        'upload_type': 'poster',
+                        'description':  ZENODO_DESCRIPTION,
+                        'creators': [{'name': ZENODO_AUTHOR,
+                                'affiliation': ZENODO_AUTHORAFFILIATION}]
+                }
+        }
+
+        requests.put('https://sandbox.zenodo.org/api/deposit/depositions/%s' % deposition_id,
+                        params={'access_token': ACCESS_TOKEN}, data=json.dumps(data),
+                        headers=headers)
+
+        print r.status_code
+        print json.dumps(r.json(),indent=2,sort_keys=True)
+
+        r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions/%s/actions/publish' % deposition_id,
+                        params={'access_token': ACCESS_TOKEN} )
+        print r.status_code
+
 
