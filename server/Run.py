@@ -22,10 +22,10 @@ for tool in tools:
             if USE_FTP:
                 print("Pushing results to FTP")
                 runner.pushToFTP()
-            elif USE_LOCAL_DIRECTORY:
+            if USE_LOCAL_DIRECTORY:
                 print("Pushing results to local directory")
                 runner.pushToLocalDirectory()
-            elif USE_ZENODO:
+            if USE_ZENODO:
                 print("Pushing results to Zenodo")
                 runner.pushToZenodo()
         else:

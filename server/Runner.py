@@ -7,6 +7,8 @@ import shutil
 import sys
 import traceback
 from FTPClient import *
+import requests
+import json
 
 class Runner:
     def __init__(self, params):
@@ -106,7 +108,7 @@ class Runner:
                 print(e)
 
     def pushToZenodo(self):
-        with open('.accesstoken','r') as f:
+        with open('.zenodo_token','r') as f:
             ACCESS_TOKEN = f.read().strip()
         
         output = ROOT+OUTPUT+self.name+"/"+self.version+"/"
@@ -120,9 +122,11 @@ class Runner:
         print(json.dumps(r.json(),indent=2,sort_keys=True))
 
         for f in os.listdir(output):
+            src = os.path.join(output, f)
+            if os.path.isfile(src):
                 deposition_id = r.json()['id']
-                data = {'filename': f}
-                files = {'file': open(f, 'rb')}
+                data = {'filename': src}
+                files = {'file': open(src, 'rb')}
                 r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions/%s/files' % deposition_id,
                                 params={'access_token': ACCESS_TOKEN}, data=data,
                                 files=files)
@@ -132,11 +136,13 @@ class Runner:
 
         data = {
                 'metadata': {
-                        'title': ZENODO_TITLE,
-                        'upload_type': 'poster',
-                        'description':  ZENODO_DESCRIPTION,
+                        'title': self.name,
+                        'upload_type': 'dataset',
+			'access_right': 'open',
+                        'license': 'cc-zero',
+                        'description':  'Results from tool executed using PubRunner on MEDLINE corpus',
                         'creators': [{'name': ZENODO_AUTHOR,
-                                'affiliation': ZENODO_AUTHORAFFILIATION}]
+                                'affiliation': ZENODO_AUTHOR_AFFILIATION}]
                 }
         }
 
@@ -147,8 +153,8 @@ class Runner:
         print(r.status_code)
         print(json.dumps(r.json(),indent=2,sort_keys=True))
 
-        r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions/%s/actions/publish' % deposition_id,
-                        params={'access_token': ACCESS_TOKEN} )
-        print(r.status_code)
+        #r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions/%s/actions/publish' % deposition_id,
+        #                params={'access_token': ACCESS_TOKEN} )
+        #print(r.status_code)
 
 

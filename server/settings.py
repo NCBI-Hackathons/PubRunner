@@ -21,9 +21,11 @@ FTP_USERNAME = ""
 FTP_PASSWORD = ""
 
 # Whether to copy to a local directory (that is mounted as a FTP or HTTP server)
-USE_LOCAL_DIRECTORY = True
-LOCAL_DIRECTORY = "/home/ftp/public/jlever/pubrunner/"
+USE_LOCAL_DIRECTORY = False
+LOCAL_DIRECTORY = ""
 
 # Whether to push to Zenodo
-USE_ZENODO = False
+USE_ZENODO = True
+ZENODO_AUTHOR = 'Joe Bloggs'
+ZENODO_AUTHOR_AFFILIATION = 'University of New New York'
 
