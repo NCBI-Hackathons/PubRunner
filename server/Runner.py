@@ -116,8 +116,8 @@ class Runner:
                         params={'access_token': ACCESS_TOKEN}, json={},
                         headers=headers)
 
-        print r.status_code
-        print json.dumps(r.json(),indent=2,sort_keys=True)
+        print(r.status_code)
+        print(json.dumps(r.json(),indent=2,sort_keys=True))
 
         for f in os.listdir(output):
                 deposition_id = r.json()['id']
@@ -127,8 +127,8 @@ class Runner:
                                 params={'access_token': ACCESS_TOKEN}, data=data,
                                 files=files)
 
-        print r.status_code
-        print json.dumps(r.json(),indent=2,sort_keys=True)
+        print(r.status_code)
+        print(json.dumps(r.json(),indent=2,sort_keys=True))
 
         data = {
                 'metadata': {
@@ -144,11 +144,11 @@ class Runner:
                         params={'access_token': ACCESS_TOKEN}, data=json.dumps(data),
                         headers=headers)
 
-        print r.status_code
-        print json.dumps(r.json(),indent=2,sort_keys=True)
+        print(r.status_code)
+        print(json.dumps(r.json(),indent=2,sort_keys=True))
 
         r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions/%s/actions/publish' % deposition_id,
                         params={'access_token': ACCESS_TOKEN} )
-        print r.status_code
+        print(r.status_code)
 
 
