@@ -108,6 +108,8 @@ class Runner:
 				print(e)
 
 	def pushToZenodo(self):
+		ZENODO_URL = 'https://sandbox.zenodo.org'
+
 		with open('.zenodo_token','r') as f:
 			ACCESS_TOKEN = f.read().strip()
 		
@@ -115,7 +117,7 @@ class Runner:
 
 		print("  Creating new Zenodo submission")
 		headers = {"Content-Type": "application/json"}
-		r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions',
+		r = requests.post(ZENODO_URL + '/api/deposit/depositions',
 						params={'access_token': ACCESS_TOKEN}, json={},
 						headers=headers)
 
@@ -154,7 +156,7 @@ class Runner:
 				}
 		}
 
-		requests.put('https://sandbox.zenodo.org/api/deposit/depositions/%s' % deposition_id,
+		requests.put(ZENODO_URL + '/api/deposit/depositions/%s' % deposition_id,
 						params={'access_token': ACCESS_TOKEN}, data=json.dumps(data),
 						headers=headers)
 
@@ -162,10 +164,11 @@ class Runner:
 		assert r.status_code == 200, "Unable to metadata to Zenodo submission (error: %d) " % r.status_code
 		#print(json.dumps(r.json(),indent=2,sort_keys=True))
 
-		#print("  Publishing Zenodo submission")
-		#r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions/%s/actions/publish' % deposition_id,
-		#				 params={'access_token': ACCESS_TOKEN} )
-		#print(r.status_code)
-		#assert r.status_code == 200, "Unable to publish to Zenodo submission (error: %d) " % r.status_code
+		print("  Publishing Zenodo submission")
+		r = requests.post(ZENODO_URL + '/api/deposit/depositions/%s/actions/publish' % deposition_id,
+						 params={'access_token': ACCESS_TOKEN} )
+		print(r.status_code)
+		assert r.status_code == 202, "Unable to publish to Zenodo submission (error: %d) " % r.status_code
 
 		return doiURL
+
