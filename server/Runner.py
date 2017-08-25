@@ -121,9 +121,8 @@ class Runner:
 						params={'access_token': ACCESS_TOKEN}, json={},
 						headers=headers)
 
-		#print(r.status_code)
 		assert r.status_code == 201, "Unable to create Zenodo submission (error: %d) " % r.status_code
-		#print(json.dumps(r.json(),indent=2,sort_keys=True))
+
 		bucket_url = r.json()['links']['bucket']
 		deposition_id = r.json()['id']
 		doi = r.json()["metadata"]["prereserve_doi"]["doi"]
@@ -141,9 +140,7 @@ class Runner:
 								"Content-Type":"application/octet-stream"})
 
 
-				#print(r.status_code)
 				assert r.status_code == 200, "Unable to add file to Zenodo submission (error: %d) " % r.status_code
-		#print(json.dumps(r.json(),indent=2,sort_keys=True))
 
 		print("  Adding metadata to Zenodo submission")
 		data = {
@@ -160,14 +157,11 @@ class Runner:
 						params={'access_token': ACCESS_TOKEN}, data=json.dumps(data),
 						headers=headers)
 
-		#print(r.status_code)
 		assert r.status_code == 200, "Unable to metadata to Zenodo submission (error: %d) " % r.status_code
-		#print(json.dumps(r.json(),indent=2,sort_keys=True))
 
 		print("  Publishing Zenodo submission")
 		r = requests.post(ZENODO_URL + '/api/deposit/depositions/%s/actions/publish' % deposition_id,
 						 params={'access_token': ACCESS_TOKEN} )
-		print(r.status_code)
 		assert r.status_code == 202, "Unable to publish to Zenodo submission (error: %d) " % r.status_code
 
 		return doiURL
