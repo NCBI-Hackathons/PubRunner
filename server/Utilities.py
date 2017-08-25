@@ -3,75 +3,75 @@ import json
 import os
 
 def loadTools():
-    """
-    Loads the tools.json file
+	"""
+	Loads the tools.json file
 
-    Args:
+	Args:
 		None
 	Returns:
 		An array containing the tools
-    """
-    with open('tools.json') as f:
-        tools = json.load(f)
-    return tools
+	"""
+	with open('tools.json') as f:
+		tools = json.load(f)
+	return tools
 
 def updateTools(tools):
-    """
-    Updates the tools.json file
+	"""
+	Updates the tools.json file
 
-    Args:
+	Args:
 		tools (Python array): List of tool objects
 	Returns:
 		Nothing
-    """
-    with open("tools.json", "w") as f:
-        json.dump(tools, f, indent = 4, sort_keys=True)
+	"""
+	with open("tools.json", "w") as f:
+		json.dump(tools, f, indent = 4, sort_keys=True)
 
 def addTool(params):
-    """
-    Adds a tool by creating the required folders, updating the JSON, etc.
+	"""
+	Adds a tool by creating the required folders, updating the JSON, etc.
 
-    Args:
+	Args:
 		params (Python dictionary): List of tool attributes as per the tools.json file
 	Returns:
 		Nothing
 
-    TODO: support to move files in the newly created tool directory
-    """
+	TODO: support to move files in the newly created tool directory
+	"""
 
-    # First, augment attributes
-    params["success"] = None
-    params["lastRun"] = None
-    params["active"] = True
+	# First, augment attributes
+	params["success"] = None
+	params["lastRun"] = None
+	params["active"] = True
 
-    # Check if a tool with the same name exists First
-    tools = loadTools()
-    exists = False
-    for tool in tools:
-        if tool["name"] == params["name"]:
-            # Cancel if it's the same version
-            if tool["version"] == params["version"]:
-                return
-            # If it's not, update the version and reset a few parameters
-            exists = True
-            tool["version"] = params["version"]
-            tool["success"] = params["success"]
-            tool["lastRun"] = params["lastRun"]
+	# Check if a tool with the same name exists First
+	tools = loadTools()
+	exists = False
+	for tool in tools:
+		if tool["name"] == params["name"]:
+			# Cancel if it's the same version
+			if tool["version"] == params["version"]:
+				return
+			# If it's not, update the version and reset a few parameters
+			exists = True
+			tool["version"] = params["version"]
+			tool["success"] = params["success"]
+			tool["lastRun"] = params["lastRun"]
 
-    # Update the JSON file
-    if not exists:
-        tools.append(params)
-    updateTools(tools)
+	# Update the JSON file
+	if not exists:
+		tools.append(params)
+	updateTools(tools)
 
-    # Create the output folder
-    ftpPath = FTP+params["name"]+"/"+params["version"]
-    if not os.path.exists(ftpPath):
-        os.makedirs(ftpPath)
-    if not os.path.exists(ftpPath+"PubRunnerLogs"):
-        os.makedirs(ftpPath+"PubRunnerLogs")
+	# Create the output folder
+	ftpPath = FTP+params["name"]+"/"+params["version"]
+	if not os.path.exists(ftpPath):
+		os.makedirs(ftpPath)
+	if not os.path.exists(ftpPath+"PubRunnerLogs"):
+		os.makedirs(ftpPath+"PubRunnerLogs")
 
-    # Create the tool folder
-    toolPath = TOOLS+params["name"]+"/"+params["version"]
-    if not os.path.exists(toolPath):
-        os.makedirs(toolPath)
+	# Create the tool folder
+	toolPath = TOOLS+params["name"]+"/"+params["version"]
+	if not os.path.exists(toolPath):
+		os.makedirs(toolPath)
 

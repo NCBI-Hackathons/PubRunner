@@ -11,31 +11,31 @@ assert USE_FTP or USE_LOCAL_DIRECTORY or USE_ZENODO, "Must select one method for
 # Now launch tools
 updatedTools = []
 for tool in tools:
-    # Only launch those that are active
-    if tool["active"] == True:
-        print("Running %s" % tool["name"])
-        runner = Runner(tool)
-        runner.run()
+	# Only launch those that are active
+	if tool["active"] == True:
+		print("Running %s" % tool["name"])
+		runner = Runner(tool)
+		runner.run()
 
-        if runner.success:
-            print("Run was successful")
-            if USE_FTP:
-                print("Pushing results to FTP")
-                runner.pushToFTP()
-            if USE_LOCAL_DIRECTORY:
-                print("Pushing results to local directory")
-                runner.pushToLocalDirectory()
-            if USE_ZENODO:
-                print("Pushing results to Zenodo")
-                doiURL = runner.pushToZenodo()
-                # We'll overwrite the dataurl with the DOI for Zenodo
-                tool['dataurl'] = doiURL
-        else:
-            print("Run failed")
+		if runner.success:
+			print("Run was successful")
+			if USE_FTP:
+				print("Pushing results to FTP")
+				runner.pushToFTP()
+			if USE_LOCAL_DIRECTORY:
+				print("Pushing results to local directory")
+				runner.pushToLocalDirectory()
+			if USE_ZENODO:
+				print("Pushing results to Zenodo")
+				doiURL = runner.pushToZenodo()
+				# We'll overwrite the dataurl with the DOI for Zenodo
+				tool['dataurl'] = doiURL
+		else:
+			print("Run failed")
 
-        updatedTools.append(runner.__dict__)
-    else:
-        updatedTools.append(tool)
+		updatedTools.append(runner.__dict__)
+	else:
+		updatedTools.append(tool)
 
 # Update the tools.json file
 updateTools(updatedTools)
