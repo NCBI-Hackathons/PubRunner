@@ -2,9 +2,9 @@
 set -eo pipefail
 
 usage() {
-	echo "$0 -i <MEDLINE_DIR> -o <OUT_VECTOR>"
+	echo "$0 -i <MEDLINE_DIR> -o <OUT_DIR>"
 	echo "  MEDLINE_DIR: Directory with MEDLINE XML files"
-	echo "  OUT_VECTOR: Filename to save word2vec vector"
+	echo "  OUT_DIR: Directory in which save word2vec vector"
 	echo
 }
 
@@ -22,7 +22,7 @@ do
 		shift # past argument
 		;;
 		-o)
-		OUT_VECTOR="$2"
+		OUT_DIR="$2"
 		shift # past argument
 		;;
 		*)
@@ -38,8 +38,8 @@ done
 
 if [ -z "$MEDLINE_DIR" ]; then
 	echo "ERROR: -i <MEDLINE_DIR> must be set" >&2; usage; exit 255
-elif [ -z "$OUT_VECTOR" ]; then
-	echo "ERROR: -o <OUT_VECTOR> must be set" >&2; usage; exit 255
+elif [ -z "$OUT_DIR" ]; then
+	echo "ERROR: -o <OUT_DIR> must be set" >&2; usage; exit 255
 elif [ ! -d $MEDLINE_DIR ]; then
 	echo "ERROR: <MEDLINE_DIR> must be a directory" >&2; usage; exit 255
 fi
@@ -51,6 +51,7 @@ SRC_DIR=word2vec/src
 BIN_DIR=word2vec/bin
 TEXT_DATA=tmp.medline.txt
 WORD2VEC_REPO=https://github.com/jakelever/word2vec.git
+OUT_VECTOR=$OUT_DIR/vectors
 
 echo
 echo "#####################"
