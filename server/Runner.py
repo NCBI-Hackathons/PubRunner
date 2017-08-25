@@ -32,8 +32,8 @@ class Runner:
 				stdoutf = open(destination+"PubRunnerLogs/std.out","wb")
 				process = run([self.command,
 							  "tools/"+self.name+"/"+self.version+"/"+self.main,
-							  "-i"+ROOT+DB,
-							  "-o"+destination],
+							  "-i",ROOT+DB,
+							  "-o",destination],
 							  stdout=stdoutf,
 							  stderr=stderrf,
 							  timeout=self.timeout,
