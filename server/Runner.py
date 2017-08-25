@@ -113,15 +113,22 @@ class Runner:
         
         output = ROOT+OUTPUT+self.name+"/"+self.version+"/"
 
+        print("  Creating new Zenodo submission")
         headers = {"Content-Type": "application/json"}
         r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions',
                         params={'access_token': ACCESS_TOKEN}, json={},
                         headers=headers)
 
-        print(r.status_code)
-        print(json.dumps(r.json(),indent=2,sort_keys=True))
+        #print(r.status_code)
+        assert r.status_code == 201, "Unable to create Zenodo submission (error: %d) " % r.status_code
+        #print(json.dumps(r.json(),indent=2,sort_keys=True))
         bucket_url = r.json()['links']['bucket']
+        deposition_id = r.json()['id']
+        doi = r.json()["metadata"]["prereserve_doi"]["doi"]
+        doiURL = "https://doi.org/" + doi
+        print("  Got provisional DOI: %s" % doiURL)
 
+        print("  Adding files to Zenodo submission")
         for f in os.listdir(output):
             src = os.path.join(output, f)
             if os.path.isfile(src):
@@ -132,9 +139,11 @@ class Runner:
                                 "Content-Type":"application/octet-stream"})
 
 
-        print(r.status_code)
-        print(json.dumps(r.json(),indent=2,sort_keys=True))
+                #print(r.status_code)
+                assert r.status_code == 200, "Unable to add file to Zenodo submission (error: %d) " % r.status_code
+        #print(json.dumps(r.json(),indent=2,sort_keys=True))
 
+        print("  Adding metadata to Zenodo submission")
         data = {
                 'metadata': {
                         'title': self.name,
@@ -149,11 +158,14 @@ class Runner:
                         params={'access_token': ACCESS_TOKEN}, data=json.dumps(data),
                         headers=headers)
 
-        print(r.status_code)
-        print(json.dumps(r.json(),indent=2,sort_keys=True))
+        #print(r.status_code)
+        assert r.status_code == 200, "Unable to metadata to Zenodo submission (error: %d) " % r.status_code
+        #print(json.dumps(r.json(),indent=2,sort_keys=True))
 
+        #print("  Publishing Zenodo submission")
         #r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions/%s/actions/publish' % deposition_id,
         #                params={'access_token': ACCESS_TOKEN} )
         #print(r.status_code)
+        #assert r.status_code == 200, "Unable to publish to Zenodo submission (error: %d) " % r.status_code
 
-
+        return doiURL

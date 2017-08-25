@@ -27,7 +27,9 @@ for tool in tools:
                 runner.pushToLocalDirectory()
             if USE_ZENODO:
                 print("Pushing results to Zenodo")
-                runner.pushToZenodo()
+                doiURL = runner.pushToZenodo()
+                # We'll overwrite the dataurl with the DOI for Zenodo
+                tool['dataurl'] = doiURL
         else:
             print("Run failed")
 
