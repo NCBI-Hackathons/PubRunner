@@ -29,7 +29,7 @@ def processMedlineFolder(medlineFolder,outFolder):
 	with open(outFolder+"countWords.txt", "a") as result:
 		# Iterate over all files
 		for f in files:
-			print "Processing %s" % f
+			print("Processing %s" % f)
 			# Iterate through the XML file and stop on each MedlineCitation
 			for event, elem in etree.iterparse(medlineFolder+f, events=('start', 'end', 'start-ns', 'end-ns')):
 				if (event=='end' and elem.tag=='MedlineCitation'):
@@ -56,7 +56,7 @@ def processMedlineFolder(medlineFolder,outFolder):
 
 						abstractCount += 1
 
-	print "%d abstracts processed" % abstractCount
+	print("%d abstracts processed" % abstractCount)
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Little toy example to "process" a Medline abstract file and gives naive word counts for each abstract')
@@ -66,3 +66,4 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	processMedlineFolder(args.i,args.o)
+
