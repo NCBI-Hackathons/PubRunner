@@ -87,6 +87,7 @@ echo
 echo "#####################"
 echo "Running word2vec"
 echo "#####################"
+mkdir -p $OUT_DIR
 time $BIN_DIR/word2vec -train $TEXT_DATA -output $OUT_VECTOR -cbow 0 -size 200 -window 5 -negative 0 -hs 1 -sample 1e-3 -threads 12 -binary 1
 
 echo

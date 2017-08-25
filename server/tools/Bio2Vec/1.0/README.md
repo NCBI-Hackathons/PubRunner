@@ -7,7 +7,7 @@ This is a small repo with scripts that install word2vec, convert PubMed XML file
 The basic usage of this requires a downloaded copy of the Pubmed XML files (yearbly baseline available from ftp://ftp.ncbi.nlm.nih.gov/pubmed/baseline/). It will process these files and compile a copy of word2vec and run the tool. The single command looks like below.
 
 ``` sh
-./run.sh -i PUBMED_BASELINE_DIRECTORY -o pubmed.vectors
+./run.sh -i PUBMED_BASELINE_DIRECTORY -o output_dir
 ```
 
 ## Relevant citations
