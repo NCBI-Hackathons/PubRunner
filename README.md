@@ -79,7 +79,7 @@ Some parameters in this file are supposed to be provided by the tool’s authors
 
 The settings.py file (shown below) defines a few parameters in order for PubRunner to run. That includes the paths for data to be stored, i.e. the MEDLINE abstract (DB), the output of tools (OUTPUT), and the tools themselves (TOOLS). When tools fail running, PubRunner can allow more tries, in case the tool failure is due to some random error (e.g., an HTTP request that punctually timed out). The number of attempts PubRunner can give to each tool is set by the FAIL_LIMIT setting.
 
-The only settings that need to be input are the FTP settings.
+The only settings that need to be input are the FTP or Zenodo settings. One of USE_FTP, USE_LOCAL_DIRECTORY or USE_ZENODO should be set to True so that PubRunner knows where to move the results data to.
 
 ```
 import os
@@ -89,7 +89,7 @@ Definition of config parameters
 """
 
 ### Static, do not touch
-VERSION = 0.1
+VERSION = 0.2
 ROOT = os.path.dirname(os.path.realpath(__file__)) + "/"
 
 ### General
@@ -99,15 +99,19 @@ OUTPUT = "output/"
 FAIL_LIMIT = 3
 
 # Whether to use FTP or a local directory (that should be mounted as an FTP)
-USE_FTP = True
+USE_FTP = False
+FTP_ADDRESS = ""
+FTP_USERNAME = ""
+FTP_PASSWORD = ""
 
-### FTP
-FTP_ADDRESS = "INSERT FTP ADDRESS HERE"
-FTP_USERNAME = "INSERT FTP USERNAME HERE"
-FTP_PASSWORD = "INSERT FTP PASSWORD HERE"
-
-### LOCAL DIRECTORY
+# Whether to copy to a local directory (that is mounted as a FTP or HTTP server)
+USE_LOCAL_DIRECTORY = False
 LOCAL_DIRECTORY = ""
+
+# Whether to push to Zenodo
+USE_ZENODO = False
+ZENODO_AUTHOR = 'INSERT AUTHOR NAME HERE'
+ZENODO_AUTHOR_AFFILIATION = 'INSERT AUTHOR AFFILIATION HERE'
 ```
 
 # Testing
