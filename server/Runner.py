@@ -147,7 +147,7 @@ class Runner:
 				'metadata': {
 						'title': self.name,
 						'upload_type': 'dataset',
-						'description':	'Results from tool executed using PubRunner on MEDLINE corpus',
+						'description':	'Results from tool executed using PubRunner on MEDLINE corpus. Code for the tool can be found at %s' % self.codeurl,
 						'creators': [{'name': ZENODO_AUTHOR,
 								'affiliation': ZENODO_AUTHOR_AFFILIATION}]
 				}
