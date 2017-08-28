@@ -108,7 +108,7 @@ class Runner:
 				print(e)
 
 	def pushToZenodo(self):
-		ZENODO_URL = 'https://sandbox.zenodo.org'
+		ZENODO_URL = 'https://zenodo.org'
 
 		with open('.zenodo_token','r') as f:
 			ACCESS_TOKEN = f.read().strip()
