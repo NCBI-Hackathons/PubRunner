@@ -23,7 +23,7 @@ run them through your favorite text mining tool and then uploads the results to 
 
 The overview below shows how PubRunner manages a "black-box text-mining tool".
 
-![Overview diagram](overview.png)
+![Overview diagram](overview2.png)
 
 # How to use PubRunner
 
