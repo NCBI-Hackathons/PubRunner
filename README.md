@@ -112,7 +112,9 @@ LOCAL_DIRECTORY = ""
 
 # Testing
 
-We tested three different scripts with PubRunner. They can be found in [server/tools/](server/tools/) . Two of the tools [CountWordsError](server/tools/CountWordsError/0.1) and [Error](server/tools/Error/0.1/Error.py) are designed to fail either randomly or consistently to make sure that PubRunner can manage failures. The third script [CountWords](server/tools/CountWords/0.1) does a basic word count of PubMed abstracts as a very simple example usage of PubRunner and should not fail.
+We tested four different tools with PubRunner. They can be found in [server/tools/](server/tools/) . Two of the tools [CountWordsError](server/tools/CountWordsError/0.1) and [Error](server/tools/Error/0.1/Error.py) are designed to fail either randomly or consistently to make sure that PubRunner can manage failures. The third script [CountWords](server/tools/CountWords/0.1) does a basic word count of PubMed abstracts as a very simple example usage of PubRunner and should not fail.
+
+The main tool to illustrate the power of PubRunner is based on word2vec. We named the scripts that execute this [Bio2Vec](server/tools/Bio2Vec/1.0).
 
 # Additional Functionality
 ### DockerFile
@@ -139,3 +141,7 @@ There is also a Docker image for hosting the main website. This should only be u
   2. `cd Website`
   3. `docker build --rm -t pubrunner/website .`
   4. `docker run -t -i pubrunner/website`
+  
+### Converting Pubmed XML to text file
+
+We also include a small script with the Bio2Vec code that converts Pubmed XML into a simple text file (containing the citation titles and abstract texts). It is available at [here](server/tools/Bio2Vec/1.0/PubPubMed2Txt.py)
