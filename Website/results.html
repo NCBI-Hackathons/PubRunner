@@ -60,18 +60,17 @@
 				  <th>Tool Name</th>
 				  <th>Description</th>
 				  <th>Code</th>
-				  <th>Latest Run</th>
 				  <th>Latest Output</th>
 				</tr>
 		  </thead>
 		  
 		  <tbody>
 			<tr ng-repeat="x in names">
-			  <td><span class="glyphicon {{x.success ? 'glyphicon-ok' : 'glyphicon-remove'}}"></span></td>
+			  <!-- <td><span class="glyphicon {{x.success ? 'glyphicon-ok' : 'glyphicon-remove'}}"></span></td>-->
+			  <td><img ng-src="shield.php?name={{x.name}}"/></td>
 			  <td>{{x.name}}</td>
 			  <td>{{x.description}}</td>
 			  <td><a href="{{x.codeurl}}">Link</a></td>
-			  <td>{{x.lastRun}}</td>
 			  <td style="visibility:{{x.success ? 'visible' : 'hidden'}}"><a href="{{x.dataurl}}">Link</a></td>
 			</tr>
 		  </tbody>
