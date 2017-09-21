@@ -1,6 +1,6 @@
 [
     {
-		"authentication": "ghyewovnekrthalfhwrltjalgw",
+        "authentication": "ghyewovnekrthalfhwrltjalgw",
         "name": "CountWordsError",
         "version": "0.1",
         "description": "CountWordsError tool description",
@@ -8,7 +8,7 @@
         "command": "python",
         "main": "CountWordsError.py",
         "timeout": 60,
-        "successed": true,
+        "success": true,
         "lastRun": "01-15-2017",
         "active": true
     }

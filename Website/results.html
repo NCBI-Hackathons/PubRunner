@@ -67,12 +67,12 @@
 		  
 		  <tbody>
 			<tr ng-repeat="x in names">
-			  <td><span class="glyphicon {{x.successed ? 'glyphicon-ok' : 'glyphicon-remove'}}"></span></td>
+			  <td><span class="glyphicon {{x.success ? 'glyphicon-ok' : 'glyphicon-remove'}}"></span></td>
 			  <td>{{x.name}}</td>
 			  <td>{{x.description}}</td>
-			  <td><a href="{{x.codeurl}}">{{x.codeurl}}</a></td>
+			  <td><a href="{{x.codeurl}}">Link</a></td>
 			  <td>{{x.lastRun}}</td>
-			  <td><a href="{{x.dataurl}}">{{x.dataurl}}</a></td>
+			  <td style="visibility:{{x.success ? 'visible' : 'hidden'}}"><a href="{{x.dataurl}}">Link</a></td>
 			</tr>
 		  </tbody>
 	  </table>
