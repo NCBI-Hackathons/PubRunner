@@ -1,5 +1,6 @@
 from settings import *
 import os
+import subprocess
 from subprocess import run, PIPE
 import datetime
 import resource
@@ -44,11 +45,14 @@ class Runner:
 							  check=True)
 
 				self.success = True
+			except subprocess.TimeoutExpired:
+				print("Timeout (%d seconds) expired. Retrying %d more times" % (self.timeout,FAIL_LIMIT-tries-1))
+				tries += 1
 			except:
 				#print (Exception, err)
 				#traceback.print_exc()
+				print("Execution failed. Retrying %d more times" % (FAIL_LIMIT-tries-1))
 				tries += 1
-				pass
 			self.lastRun = datetime.datetime.now().strftime("%m-%d-%Y")
 
 			# Also log PubRunner data information
