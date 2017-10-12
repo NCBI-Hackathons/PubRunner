@@ -13,7 +13,7 @@
 	$codeurl = strip_tags ($_POST['codeurl']);
 	$description = strip_tags ($_POST['description']);
 
-	$currentStatusFile = "currentstatus.json";
+	$currentStatusFile = "restricted/currentstatus.json";
 	$currentStatusData = json_decode(file_get_contents($currentStatusFile), true);
 
 	$newTool = [];

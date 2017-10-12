@@ -5,7 +5,7 @@ if (!isset($_GET['name']))
 
 $name = $_GET['name'];
 
-$currentStatusFile = "currentstatus.json";
+$currentStatusFile = "restricted/currentstatus.json";
 $currentStatusData = json_decode(file_get_contents($currentStatusFile), true);
 
 foreach ($currentStatusData as $record)

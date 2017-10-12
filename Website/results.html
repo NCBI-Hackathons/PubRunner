@@ -97,7 +97,7 @@
     <script type="text/javascript" charset="utf-8">
       var app = angular.module('pubrunnerApp', []);
 		app.controller('appControl', function($scope, $http) {		
-			$http.get('currentstatus.json').success(function(data) {
+			$http.get('currentstatus.php').success(function(data) {
 				$scope.names = data;
 			}); 
 		});

@@ -37,7 +37,7 @@ try {
 	
 	// TODO: This should double check that the JSON file has all the expected fields
 	
-	$currentStatusFile = "currentstatus.json";
+	$currentStatusFile = "restricted/currentstatus.json";
 	$currentStatusData = json_decode(file_get_contents($currentStatusFile), true);
 	
 	echo "<pre>";

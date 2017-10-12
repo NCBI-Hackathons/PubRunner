@@ -12,5 +12,20 @@
         "success": true,
         "lastRun": "01-10-2017",
         "active": true
+    },
+    {
+        "name": "Test Tool",
+        "email": "fake@email.net",
+        "codeurl": "http:\/\/www.yahoo.com",
+        "dataurl": "",
+        "description": "asdasd",
+        "version": "N\/A",
+        "command": "N\/A",
+        "main": "N\/A",
+        "timeout": 60,
+        "success": false,
+        "lastRun": "N\/A",
+        "active": true,
+        "authentication": "5876a7a247007"
     }
 ]
