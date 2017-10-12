@@ -21,18 +21,16 @@ def processMedlineFolder(medlineFolder,outFolder):
 	files = [ f for f in listdir(medlineFolder) if isfile(join(medlineFolder, f)) ]
 	
 	# Filter for only XML files
-	files = [ f for f in files if f.endswith('xml') ]
-	
-	# Make sure the out folder ends with a slash
-	if outFolder[-1] != '/':
-		outFolder += '/'
+	files = sorted([ f for f in files if f.endswith('xml') ])
 
-	with open(outFolder+"countWordsError.txt", "a") as result:
+	outfile = join(outFolder,"countWordsError.txt")
+	with open(outfile, "a") as result:
 		# Iterate over all files
 		for f in files:
 			print("Processing %s" % f)
+			fullpath = join(medlineFolder,f)
 			# Iterate through the XML file and stop on each MedlineCitation
-			for event, elem in etree.iterparse(medlineFolder+f, events=('start', 'end', 'start-ns', 'end-ns')):
+			for event, elem in etree.iterparse(fullpath, events=('start', 'end', 'start-ns', 'end-ns')):
 				if (event=='end' and elem.tag=='MedlineCitation'):
 
 					# Let's get the PMID and Abstract elements from the XML
