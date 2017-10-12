@@ -20,19 +20,23 @@ class Runner:
 		tries = 0
 		while not self.success and tries < FAIL_LIMIT:
 			# Make sure that the directory for output is created
-			destination = ROOT+OUTPUT+self.name+"/"+self.version+"/"
-			if not os.path.isdir(destination+"PubRunnerLogs/"):
-				os.makedirs(destination+"PubRunnerLogs/")
+			destination = os.path.join(ROOT,OUTPUT,self.name,self.version)
+			logDir = os.path.join(destination,"PubRunnerLogs")
+			if not os.path.isdir(logDir):
+				os.makedirs(logDir)
 
 			try:
 
 
 				# Set log files
-				stderrf = open(destination+"PubRunnerLogs/std.err","wb")
-				stdoutf = open(destination+"PubRunnerLogs/std.out","wb")
+				command = os.path.join('tools',self.name,self.version,self.main)
+				inputDB = os.path.join(ROOT,DB)
+				assert os.path.isfile(command), "Couldn't find command (%s) for tool %s" % (command,self.name)
+				stderrf = open(os.path.join(logDir,"std.err"),"wb")
+				stdoutf = open(os.path.join(logDir,"std.out"),"wb")
 				process = run([self.command,
-							  "tools/"+self.name+"/"+self.version+"/"+self.main,
-							  "-i",ROOT+DB,
+							  command,
+							  "-i",inputDB,
 							  "-o",destination],
 							  stdout=stdoutf,
 							  stderr=stderrf,
@@ -48,15 +52,15 @@ class Runner:
 			self.lastRun = datetime.datetime.now().strftime("%m-%d-%Y")
 
 			# Also log PubRunner data information
-			with open(destination+"PubRunnerLogs/info.txt", "w") as f:
-				f.write("PubRunner version: "+str(VERSION)+"\nRun on "+self.lastRun)
+			with open(os.path.join(logDir,"info.txt"), "w") as f:
+				f.write("PubRunner version: "+str(VERSION)+"\nRun on "+self.lastRun+"\n")
 
 	def pushToFTP(self):
 		assert FTP_ADDRESS != '', 'FTP address must be completed in the setting.py file'
 		assert FTP_USERNAME != '', 'FTP username must be completed in the setting.py file'
 		assert FTP_PASSWORD != '', 'FTP password must be completed in the setting.py file'
 
-		output = ROOT+OUTPUT+self.name+"/"+self.version+"/"
+		output = os.path.join(ROOT,OUTPUT,self.name,self.version)
 
 		# N.B. This doesn't recursively copy files
 
@@ -85,9 +89,9 @@ class Runner:
 	def pushToLocalDirectory(self):
 		assert LOCAL_DIRECTORY != '', 'Local directory must be completed in the setting.py file'
 
-		output = ROOT+OUTPUT+self.name+"/"+self.version+"/"
+		output = os.path.join(ROOT,OUTPUT,self.name,self.version)
 
-		destDir = LOCAL_DIRECTORY.rstrip("/")+"/"+self.name+"/"+self.version+"/"
+		destDir = os.path.join(LOCAL_DIRECTORY,self.name,self.version)
 		if not os.path.isdir(destDir):
 			os.makedirs(destDir)
 
@@ -113,7 +117,7 @@ class Runner:
 		with open('.zenodo_token','r') as f:
 			ACCESS_TOKEN = f.read().strip()
 		
-		output = ROOT+OUTPUT+self.name+"/"+self.version+"/"
+		output = os.path.join(ROOT,OUTPUT,self.name,self.version)
 
 		print("  Creating new Zenodo submission")
 		headers = {"Content-Type": "application/json"}
