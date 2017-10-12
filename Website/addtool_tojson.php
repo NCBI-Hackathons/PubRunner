@@ -1,5 +1,38 @@
 <?php
 
+	// Check the CAPTCHA response
+	$g_recaptcha_response = $_POST['g-recaptcha-response'];
+	
+	$secret = trim(file_get_contents('recaptcha_secret.txt'));
+	$remoteip = $_SERVER['REMOTE_ADDR'];
+	$url = 'https://www.google.com/recaptcha/api/siteverify';
+	$data = array('secret' => $secret, 'response' => $g_recaptcha_response, 'remoteip' => $remoteip);
+	//exit(0);
+
+	// use key 'http' even if you send the request to https://...
+	$options = array(
+		'http' => array(
+			'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+			'method'  => 'POST',
+			'content' => http_build_query($data)
+		)
+	);
+	$context  = stream_context_create($options);
+	$result = file_get_contents($url, false, $context);
+	if ($result === FALSE) { 
+		/* Handle error */
+		echo("ERROR: Unable to check Captcha");
+		exit(0);
+	}
+	$json_result = json_decode($result,true);
+
+	//var_dump($result);
+	if ($json_result["success"] != true)
+	{
+		echo("ERROR: Captcha failure. Please try again");
+		exit(0);
+	}
+
 	$fp = fopen('lock.txt', 'w');
 
 	/* Activate the LOCK_NB option on an LOCK_EX operation */
