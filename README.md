@@ -1,3 +1,5 @@
+> :exclamation: The PubRunner hackathon project has been superceded by the [PubRunner python package](https://github.com/jakelever/pubrunner) which has many many more features and is more adaptable. We suggest that you start there instead.
+
 ![Logo](logo.png)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.556195.svg)](https://doi.org/10.5281/zenodo.556195)
