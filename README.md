@@ -4,7 +4,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.556195.svg)](https://doi.org/10.5281/zenodo.556195)
 
-PubRunner's website is at http://www.pubrunner.org. This project was part of the [January 2017 NCBI Hackathon](https://www.ncbi.nlm.nih.gov/news/11-17-2016-biomedical-informatics-hackathon/)
+ This project was part of the [January 2017 NCBI Hackathon](https://www.ncbi.nlm.nih.gov/news/11-17-2016-biomedical-informatics-hackathon/)
 
 # What is biomedical text mining?
 
@@ -21,7 +21,7 @@ We want text mining analyses to be a reliable method to peruse the latest public
 # What is PubRunner?
 
 PubRunner is a framework which runs on a user defined schedule allowing you to download latest PubMed abstracts,
-run them through your favorite text mining tool and then uploads the results to public FTP. Additionally the user has the option to post a link to their FTP on the public PubRunner website (www.pubrunner.org).
+run them through your favorite text mining tool and then uploads the results to public FTP. .
 
 The overview below shows how PubRunner manages a "black-box text-mining tool".
 
